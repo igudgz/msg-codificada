@@ -8,7 +8,7 @@ const codificar = selector(".codificar");
 const decodificar = selector(".decodificar");
 const cifraDeCesar = selector("#apresentacao-cesar");
 const base64 = selector("#apresentacao-base64");
-const mensagem = selector("#mensagem");
+let mensagem = selector("#mensagem");
 
 // Eventos!
 
@@ -36,21 +36,56 @@ inputDecodificar.addEventListener(
 );
 codificar.addEventListener("click", (event) => {
   event.preventDefault();
-  let mensagemCodificada = btoa(mensagem.value);
+
   if (escolhaCodificacao.value == "base64") {
+    let mensagemCodificada = btoa(mensagem.value);
     mensagem.value = `${mensagemCodificada}`;
+  }
+  if (escolhaCodificacao.value == "cifraDeCesar") {
+    codificacaoDeCesar();
+    console.log("caiu");
   }
 });
 
 decodificar.addEventListener("click", (event) => {
   event.preventDefault();
-  let mensagemDecodificada = atob(mensagem.value);
   if (escolhaCodificacao.value == "base64") {
+    let mensagemDecodificada = atob(mensagem.value);
     mensagem.value = `${mensagemDecodificada}`;
+  } else if (escolhaCodificacao.value == "cifraDeCesar") {
+    decodificacaoDeCesar();
+    console.log("caiu");
   }
 });
 
 //Funções
 function selector(elemento) {
   return document.querySelector(elemento);
+}
+
+function codificacaoDeCesar() {
+  let mensagemCesar = mensagem.value.split("");
+  let incrementos = parseInt(incremento.value);
+  let codificacaoFinal = "";
+  mensagemCesar.forEach((item) => {
+    let numeroCodificado = item.charCodeAt() + incrementos;
+    let resultado = String.fromCharCode(numeroCodificado);
+    let resultadoCodificado = resultado.split("");
+    let resultadoCodificado2 = resultadoCodificado.join("");
+    codificacaoFinal += resultadoCodificado2;
+    mensagem.value = `${codificacaoFinal}`;
+  });
+}
+function decodificacaoDeCesar() {
+  let mensagemCesar = mensagem.value.split("");
+  let incrementos = parseInt(incremento.value);
+  let codificacaoFinal = "";
+  mensagemCesar.forEach((item) => {
+    let numeroCodificado = item.charCodeAt() - incrementos;
+    let resultado = String.fromCharCode(numeroCodificado);
+    let resultadoCodificado = resultado.split("");
+    let resultadoCodificado2 = resultadoCodificado.join("");
+    codificacaoFinal += resultadoCodificado2;
+    mensagem.value = `${codificacaoFinal}`;
+  });
 }
