@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decodificando</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oldenburg&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="container">
+      <div class="formulario">
+        <form class="form-cod" action="">
+          <h1 class="titulo">Codificador e Decodificador</h1>
+          <input
+            type="text"
+            name="mensagem"
+            id="mensagem"
+            class="mensagem"
+            placeholder="Mensagem"
+          />
+          <input
+            type="text"
+            name="incremento"
+            id="incremento"
+            class="incremento"
+            placeholder="Incremento"
+          />
+          <select
+            class="escolha-decodificacao"
+            name="tiposDeDecodificacao"
+            id="decodificar"
+          >
+            <option value="escolha">Escolha Aqui</option>
+            <option value="cifraDeCesar" id="cesar">Cifra de César</option>
+            <option value="base64">Base64</option>
+          </select>
+          <div class="botoes-codificacao">
+            <button type="submit" class="codificar">Codificar Mensagem</button>
+            <button type="submit" class="decodificar">
+              Decodificar Mensagem
+            </button>
+          </div>
+          <div class="input-posicao">
+            <input
+              type="radio"
+              class="input-cod input-codificar"
+              name="codificar"
+              value="codificar"
+              id="codificar"
+            />
+            <label for="codificar">Codificar</label>
+            <input
+              type="radio"
+              class="input-cod input-decodificar"
+              name="decodificar"
+              value="decodificar"
+              id="decodificar"
+            />
+            <label for="decodificar">Decodificar</label>
+          </div>
+        </form>
+      </div>
+      <div class="apresentacao" id="apresentacao-cesar">
+        <h1 class="titulo-cesar">Cifra de César!</h1>
+        <img
+          class="img-cesar"
+          src="./images/cesar.png"
+          alt="Explicação como funciona Cifra"
+        />
+        <p class="texto-cesar">
+          Em criptografia, a Cifra de César, também conhecida como cifra de
+          troca, código de César ou troca de César, é uma das mais simples e
+          conhecidas técnicas de criptografia. É um tipo de cifra de
+          substituição na qual cada letra do texto é substituída por outra, que
+          se apresenta no alfabeto abaixo dela um número fixo de vezes. Por
+          exemplo, com uma troca de três posições, A seria substituído por D, B
+          se tornaria E, e assim por diante. O nome do método é em homenagem a
+          Júlio César, que o usou para se comunicar com os seus generais. O
+          processo de criptografia de uma cifra de César é frequentemente
+          incorporado como parte de esquemas mais complexos, como a cifra de
+          Vigenère, e continua tendo aplicações modernas, como no sistema ROT13.
+          Como todas as cifras de substituição monoalfabéticas, a cifra de César
+          é facilmente decifrada e na prática não oferece essencialmente nenhuma
+          segurança na comunicação.
+        </p>
+      </div>
+      <div class="apresentacao" id="apresentacao-base64">
+        <h1 class="titulo-base64">Base64</h1>
+        <img
+          src="./images/base64.png"
+          class="img-base64"
+          alt="Como funciona a base64"
+        />
+        <p class="texto-base64">
+          Base64 é um método para codificação de dados para transferência na
+          Internet (codificação MIME para transferência de conteúdo). É
+          utilizado frequentemente para transmitir dados binários por meios de
+          transmissão que lidam apenas com texto, como por exemplo para enviar
+          arquivos anexos por e-mail. É constituído por 64 caracteres
+          ([A-Z],[a-z],[0-9], "/" e "+") que deram origem ao seu nome. O
+          carácter "=" é utilizado como um sufixo especial e a especificação
+          original definiu que o símbolo "*" pode ser utilizado para delimitar
+          dados convertidos, mas não criptografados, dentro de um stream. A
+          codificação Base64 é frequentemente utilizada quando existe uma
+          necessidade de transferência e armazenamento de dados binários para um
+          dispositivo designado para trabalhar com dados textuais. Esta
+          codificação é amplamente utilizada por aplicações em conjunto com a
+          linguagem de marcação XML, possibilitando o armazenamento de dados
+          binários em forma de texto.
+        </p>
+      </div>
+    </section>
+    <script src="./dom.js"></script>
+  </body>
+</html>
