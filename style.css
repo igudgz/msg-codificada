@@ -119,12 +119,13 @@ body {
 
 .input-cod {
   width: 15%;
-  height: 10%;
-  margin-bottom: 20px;
+  height: 15%;
 }
+
 label {
   font-weight: bold;
 }
+
 .apresentacao {
   width: 40%;
   height: 85%;
@@ -191,4 +192,47 @@ label {
   width: 50%;
   height: 20%;
   margin-top: 2%;
+}
+
+@media (max-width: 700px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body {
+    background-size: auto;
+  }
+
+  .formulario {
+    width: 95%;
+    height: 60%;
+    margin: 5%;
+    box-shadow: none;
+  }
+  .titulo {
+    margin-top: 5%;
+  }
+  .apresentacao {
+    width: 95%;
+    height: 100%;
+    margin: 5%;
+    padding: 5px;
+    font-size: 12px;
+    box-shadow: none;
+    padding: 0;
+  }
+  .texto-base64 {
+    width: 99%;
+  }
+
+  .input-posicao {
+    margin-bottom: 4%;
+  }
+
+  .input-cod {
+    width: 15%;
+    height: 25%;
+    margin-bottom: 10px;
+  }
 }

@@ -17,23 +17,28 @@ escolhaCodificacao.addEventListener("change", () => {
     incremento.style.display = "block";
     setTimeout(() => {
       cifraDeCesar.style.display = "flex";
+      base64.style.display = "none";
     }, 300);
   }
   if (escolhaCodificacao.value == "base64") {
+    incremento.style.display = "none";
     setTimeout(() => {
       base64.style.display = "flex";
+      cifraDeCesar.style.display = "none";
     }, 300);
   }
 });
 
-inputCodificar.addEventListener(
-  "click",
-  () => (codificar.style.display = "block")
-);
-inputDecodificar.addEventListener(
-  "click",
-  () => (decodificar.style.display = "block")
-);
+inputCodificar.addEventListener("click", () => {
+  codificar.style.display = "block";
+  decodificar.style.display = "none";
+  inputDecodificar.checked = false;
+});
+inputDecodificar.addEventListener("click", () => {
+  decodificar.style.display = "block";
+  codificar.style.display = "none";
+  inputCodificar.checked = false;
+});
 codificar.addEventListener("click", (event) => {
   event.preventDefault();
 
@@ -43,7 +48,6 @@ codificar.addEventListener("click", (event) => {
   }
   if (escolhaCodificacao.value == "cifraDeCesar") {
     codificacaoDeCesar();
-    console.log("caiu");
   }
 });
 
@@ -54,10 +58,9 @@ decodificar.addEventListener("click", (event) => {
     mensagem.value = `${mensagemDecodificada}`;
   } else if (escolhaCodificacao.value == "cifraDeCesar") {
     decodificacaoDeCesar();
-    console.log("caiu");
   }
 });
-
+//FAZER INCREMETNO SUMUIR NO BASE 64
 //Funções
 function selector(elemento) {
   return document.querySelector(elemento);
