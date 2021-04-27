@@ -60,7 +60,7 @@ decodificar.addEventListener("click", (event) => {
     decodificacaoDeCesar();
   }
 });
-//FAZER INCREMETNO SUMUIR NO BASE 64
+
 //Funções
 function selector(elemento) {
   return document.querySelector(elemento);

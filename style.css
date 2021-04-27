@@ -216,8 +216,11 @@ label {
   .apresentacao {
     width: 95%;
     height: 100%;
-    margin: 5%;
-    padding: 5px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 7%;
+
     font-size: 12px;
     box-shadow: none;
     padding: 0;
