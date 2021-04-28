@@ -9,6 +9,7 @@ const decodificar = selector(".decodificar");
 const cifraDeCesar = selector("#apresentacao-cesar");
 const base64 = selector("#apresentacao-base64");
 let mensagem = selector("#mensagem");
+const mensagemFinal = selector("#mensagem-codificada");
 
 // Eventos!
 
@@ -44,7 +45,7 @@ codificar.addEventListener("click", (event) => {
 
   if (escolhaCodificacao.value == "base64") {
     let mensagemCodificada = btoa(mensagem.value);
-    mensagem.value = `${mensagemCodificada}`;
+    mensagemFinal.value = `${mensagemCodificada}`;
   }
   if (escolhaCodificacao.value == "cifraDeCesar") {
     codificacaoDeCesar();
@@ -55,7 +56,7 @@ decodificar.addEventListener("click", (event) => {
   event.preventDefault();
   if (escolhaCodificacao.value == "base64") {
     let mensagemDecodificada = atob(mensagem.value);
-    mensagem.value = `${mensagemDecodificada}`;
+    mensagemFinal.value = `${mensagemDecodificada}`;
   } else if (escolhaCodificacao.value == "cifraDeCesar") {
     decodificacaoDeCesar();
   }
@@ -76,7 +77,7 @@ function codificacaoDeCesar() {
     let resultadoCodificado = resultado.split("");
     let resultadoCodificado2 = resultadoCodificado.join("");
     codificacaoFinal += resultadoCodificado2;
-    mensagem.value = `${codificacaoFinal}`;
+    mensagemFinal.value = `${codificacaoFinal}`;
   });
 }
 function decodificacaoDeCesar() {
@@ -89,6 +90,6 @@ function decodificacaoDeCesar() {
     let resultadoCodificado = resultado.split("");
     let resultadoCodificado2 = resultadoCodificado.join("");
     codificacaoFinal += resultadoCodificado2;
-    mensagem.value = `${codificacaoFinal}`;
+    mensagemFinal.value = `${codificacaoFinal}`;
   });
 }
