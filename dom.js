@@ -16,6 +16,7 @@ const mensagemFinal = selector("#mensagem-codificada");
 escolhaCodificacao.addEventListener("change", () => {
   if (escolhaCodificacao.value == "cifraDeCesar") {
     incremento.style.display = "block";
+    mensagemFinal.classList.add("oculto");
     setTimeout(() => {
       cifraDeCesar.style.display = "flex";
       base64.style.display = "none";
@@ -23,6 +24,7 @@ escolhaCodificacao.addEventListener("change", () => {
   }
   if (escolhaCodificacao.value == "base64") {
     incremento.style.display = "none";
+    mensagemFinal.classList.add("oculto");
     setTimeout(() => {
       base64.style.display = "flex";
       cifraDeCesar.style.display = "none";
@@ -44,21 +46,21 @@ codificar.addEventListener("click", (event) => {
   event.preventDefault();
 
   if (escolhaCodificacao.value == "base64") {
-    let mensagemCodificada = btoa(mensagem.value);
-    mensagemFinal.value = `${mensagemCodificada}`;
+    codifBase64(codificar);
   }
   if (escolhaCodificacao.value == "cifraDeCesar") {
-    codificacaoDeCesar();
+    codificacaoDeCesar(codificar);
+    mensagemFinal.classList.remove("oculto");
   }
 });
 
 decodificar.addEventListener("click", (event) => {
   event.preventDefault();
   if (escolhaCodificacao.value == "base64") {
-    let mensagemDecodificada = atob(mensagem.value);
-    mensagemFinal.value = `${mensagemDecodificada}`;
+    codifBase64(decodificar);
   } else if (escolhaCodificacao.value == "cifraDeCesar") {
-    decodificacaoDeCesar();
+    codificacaoDeCesar(decodificar);
+    mensagemFinal.classList.remove("oculto");
   }
 });
 
@@ -67,29 +69,41 @@ function selector(elemento) {
   return document.querySelector(elemento);
 }
 
-function codificacaoDeCesar() {
+function codificacaoDeCesar(botao) {
   let mensagemCesar = mensagem.value.split("");
+  let mensagemCesarDecod = mensagemFinal.value.split("");
   let incrementos = parseInt(incremento.value);
   let codificacaoFinal = "";
-  mensagemCesar.forEach((item) => {
-    let numeroCodificado = item.charCodeAt() + incrementos;
-    let resultado = String.fromCharCode(numeroCodificado);
-    let resultadoCodificado = resultado.split("");
-    let resultadoCodificado2 = resultadoCodificado.join("");
-    codificacaoFinal += resultadoCodificado2;
-    mensagemFinal.value = `${codificacaoFinal}`;
-  });
+  if (botao == codificar) {
+    mensagemCesar.forEach((item) => {
+      let numeroCodificado = item.charCodeAt() + incrementos;
+      let resultado = String.fromCharCode(numeroCodificado);
+      let resultadoCodificado = resultado.split("");
+      let resultadoCodificado2 = resultadoCodificado.join("");
+      codificacaoFinal += resultadoCodificado2;
+      mensagemFinal.value = `${codificacaoFinal}`;
+    });
+  }
+  if (botao == decodificar) {
+    mensagemCesarDecod.forEach((item) => {
+      let numeroCodificado = item.charCodeAt() - incrementos;
+      let resultado = String.fromCharCode(numeroCodificado);
+      let resultadoCodificado = resultado.split("");
+      let resultadoCodificado2 = resultadoCodificado.join("");
+      codificacaoFinal += resultadoCodificado2;
+      mensagemFinal.value = `${codificacaoFinal}`;
+    });
+  }
 }
-function decodificacaoDeCesar() {
-  let mensagemCesar = mensagem.value.split("");
-  let incrementos = parseInt(incremento.value);
-  let codificacaoFinal = "";
-  mensagemCesar.forEach((item) => {
-    let numeroCodificado = item.charCodeAt() - incrementos;
-    let resultado = String.fromCharCode(numeroCodificado);
-    let resultadoCodificado = resultado.split("");
-    let resultadoCodificado2 = resultadoCodificado.join("");
-    codificacaoFinal += resultadoCodificado2;
-    mensagemFinal.value = `${codificacaoFinal}`;
-  });
+
+function codifBase64(botao) {
+  mensagemFinal.classList.remove("oculto");
+  let mensagemCodificada = btoa(mensagem.value);
+  let mensagemDecodificada = atob(mensagemCodificada);
+  if (botao.innerText == "Codificar Mensagem") {
+    mensagemFinal.value = `${mensagemCodificada}`;
+  }
+  if (botao.innerText == "Decodificar Mensagem") {
+    mensagemFinal.value = `${mensagemDecodificada}`;
+  }
 }

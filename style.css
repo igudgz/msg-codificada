@@ -57,6 +57,9 @@ body {
   background-color: #a3a380;
   margin-top: 10px;
 }
+.oculto {
+  display: none;
+}
 
 .incremento {
   width: 35%;
